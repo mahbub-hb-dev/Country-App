@@ -52,7 +52,7 @@ function App() {
       <p className='text-center text-fuchsia-500 text-[12px] font-[500]'> Copyright &copy; Mahbub Hasan Belal </p>
       <h1 className='text-3xl text-center font-bold text-fuchsia-700'> Country Information </h1>
       <Search onSearch={handleSearch} />
-      {isLoading && <h2>Loading...</h2>}
+      {isLoading && <h2 className='text-center mt-[10%] text-xl font-[500]'>Loading...</h2>}
       {error && <h2>Error: {error.message}</h2>}
       {countries && <Countries countries={filteredCountries} onRemoveCountry={handleRemoveCountry} /> }
     </div>

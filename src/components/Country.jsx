@@ -8,8 +8,8 @@ const Country = (props) => {
     }
 
   return (
-    <article className='bg-cyan-950'>
-        <div className='px-7 h-full py-3 rounded-lg transition transition-all hover:scale-105'>
+    <article className='px-7 h-full py-3 bg-cyan-950 rounded-lg hover:scale-105 transition transition-all'>
+        <div>
             <img className='w-[250px] h-[130px] mb-1 block mx-auto' src={flags.png} alt={name.common} />
             <div className='w-[250px] mx-auto'>
               <h3> Name : {name.common} </h3>
