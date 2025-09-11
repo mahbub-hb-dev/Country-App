@@ -49,9 +49,11 @@ function App() {
 
   return (
     <div>
-      <p className='text-center text-fuchsia-500 text-[12px] font-[500]'> Copyright &copy; Mahbub Hasan Belal </p>
-      <h1 className='text-3xl text-center font-bold text-fuchsia-700'> Country Information </h1>
-      <Search onSearch={handleSearch} />
+      <div className='fixed top-0 left-0 right-0 z-50 bg-white border border-b-black'>
+        <p className='text-center text-fuchsia-500 text-[12px] font-[500]'> Copyright &copy; Mahbub Hasan Belal </p>
+        <h1 className='text-3xl text-center font-bold text-fuchsia-700'> Country Information </h1>
+        <Search onSearch={handleSearch} />
+      </div>
       {isLoading && <h2 className='text-center mt-[10%] text-xl font-[500]'>Loading...</h2>}
       {error && <h2>Error: {error.message}</h2>}
       {countries && <Countries countries={filteredCountries} onRemoveCountry={handleRemoveCountry} /> }
