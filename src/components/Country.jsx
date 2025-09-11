@@ -16,7 +16,7 @@ const Country = (props) => {
               <h3> Population : {population} </h3>
               <h3> Capital : {capital} </h3>
               <h3> Area : {region} </h3>
-              <button onClick={() => handleRemove(name.common)} className='border px-3 py-1 mt-2 font-bold text-white hover:bg-amber-300 hover:text-black cursor-pointer rounded-md'> Remove </button>
+              <button onClick={() => handleRemove(name.common)} className='border px-3 py-1 mt-2 font-bold text-white hover:bg-amber-300 active:bg-red-400 hover:text-black cursor-pointer rounded-md'> Remove </button>
             </div>
         </div>
     </article>
