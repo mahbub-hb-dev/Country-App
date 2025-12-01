@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react'
 
-const Search = (props) => {
-    const [searchTxt, setSearchTxt] = useState("");
-
-    const handleChange = (e) => {
-        setSearchTxt(e.target.value);
-    }
+const Search = ({onSearch}) => {
+    const [searchText, setSearchText] = useState("");
 
     useEffect(()=>{
-        props.onSearch(searchTxt);
-    }, [searchTxt])
+        onSearch(searchText);
+    }, [searchText])
 
   return (
     <div className='text-center my-3'>
-      <input className='border rounded text-center focus:bg-amber-100 p-1' type="text" placeholder='Search Country' value={searchTxt} onChange={handleChange} />
+      <input
+        type="text"
+        value={searchText}
+        placeholder="Search Country"
+        className='border rounded text-center focus:bg-amber-100 p-1'
+        onChange={(e) => setSearchText(e.target.value)}
+      />
     </div>
   )
 }
