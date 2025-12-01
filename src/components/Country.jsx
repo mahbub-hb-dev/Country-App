@@ -1,4 +1,3 @@
-
 const Country = ({country, onRemoveCountry}) => {
   const { name, capital, region, area, population, flags } = country;
 
@@ -15,7 +14,7 @@ const Country = ({country, onRemoveCountry}) => {
               <h3>Continent: {region}</h3>
               <button onClick={() => onRemoveCountry(name.common)} className='border px-3 py-1 mt-2 font-bold text-white hover:bg-amber-300 active:bg-red-400 hover:text-black cursor-pointer rounded-md'> Remove </button>
             </div>
-
+            
         </div>
     </article>
   )
