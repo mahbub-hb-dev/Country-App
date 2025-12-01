@@ -3,29 +3,28 @@ import './App.css';
 import Countries from './components/Countries';
 import Search from './components/Search';
 
-const url = "https://restcountries.com/v3.1/all?fields=name,cca3,flags,region,capital,population";
+const url = "https://restcountries.com/v3.1/all?fields=name,capital,region,area,population,flags";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [countries, setCountries] = useState([]);
-  const [filteredCountries, setFilteredCountries] = useState(countries);
+  const [allCountries, setAllCountries] = useState([]);
 
-  const fetchData = async (url) => {
+  const fetchData = async () => {
     setIsLoading(true);
     try {
       const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Request failed with status ${response.status}`);
-      }
       const data = await response.json();
+
       setCountries(data);
-      setFilteredCountries(data);
+      setAllCountries(data); // store master data
+
       setIsLoading(false);
       setError(null);
-    } catch (err) {
+    } catch (error) {
+      setError(error.message);
       setIsLoading(false);
-      setError(err);
     }
   };
 
@@ -34,18 +33,22 @@ function App() {
   }, []);
 
   const handleRemoveCountry = (name) => {
-    const filter = filteredCountries.filter((country) => country.name.common !== name);
-    setFilteredCountries(filter);
-  }
+    const filtered = allCountries.filter((country) => country.name.common !== name);
 
-  const handleSearch = (searchValue) => {
-    let value = searchValue.toLowerCase();
-    const newCountries = countries.filter((country) => {
+    setAllCountries(filtered);
+    setCountries(filtered);
+  };
+
+  const handleSearch = (searchText) => {
+    const term = searchText.toLowerCase();
+
+    const filtered = allCountries.filter((country) => {
       const countryName = country.name.common.toLowerCase();
-      return countryName.startsWith(value);
+      return countryName.startsWith(term);
     });
-    setFilteredCountries(newCountries);
-  }
+
+    setCountries(filtered);
+  };
 
   return (
     <div>
@@ -54,25 +57,15 @@ function App() {
         <h1 className='text-3xl text-center font-bold text-fuchsia-700'> Country Information </h1>
         <Search onSearch={handleSearch} />
       </div>
+
       {isLoading && <h2 className='text-center mt-[10%] text-xl font-[500]'>Loading...</h2>}
       {error && <h2>Error: {error.message}</h2>}
-      {countries && <Countries countries={filteredCountries} onRemoveCountry={handleRemoveCountry} /> }
+      {countries && <Countries countries={countries} onRemoveCountry={handleRemoveCountry} /> }
     </div>
   );
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
